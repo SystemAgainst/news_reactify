@@ -1,0 +1,18 @@
+.banner {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    width: 100%;
+    padding: 12px 24px;
+    background-color: #fff;
+    border-bottom: 1px solid #F2F4F5;
+}
+
+.banner__title {
+    font-size: 1rem;
+}
+
+.banner__extra {
+    font-size: 12px;
+    color: #6c7072;
+}
