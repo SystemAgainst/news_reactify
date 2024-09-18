@@ -5,11 +5,11 @@ const Image = ({ image }) => {
         <div className={styles.wrapper}>
             {
                 image
-                    ? <img src={image} alt='news' className={styles.image} />
+                    ? <img src={image} alt="news" className={styles.image} />
                     : null
             }
         </div>
-    )
-}
+    );
+};
 
-export default Image
+export default Image;
