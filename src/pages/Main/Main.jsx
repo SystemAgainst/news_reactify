@@ -1,6 +1,5 @@
 import styles from './styles.module.css';
 import NewsBanner from '../../components/NewsBanner/NewsBanner.jsx';
-import { useState } from 'react';
 import { getCategories, getNews } from '../../api/news.js';
 import NewsList from '../../components/NewsList/NewsList.jsx';
 import Pagination from '../../components/Pagination/Pagination.jsx';
@@ -9,38 +8,39 @@ import Search from '../../components/Search/Search.jsx';
 import { useDebounce } from '../../helpers/hooks/useDebounce.js';
 import { PAGE_SIZE, TOTAL_PAGES } from '../../constants/constants.js';
 import { useFetch } from '../../helpers/hooks/useFetch.js';
+import { useFilters } from '../../helpers/hooks/useFilters.js';
 
 const Main = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [selectedCategory, setSelectedCategories] = useState('All');
-  const [keywords, setKeywords] = useState('');
+  const { filters, changeFilters } = useFilters({
+    page_number: 1,
+    page_size: PAGE_SIZE,
+    category: null,
+    keywords: '',
+  });
 
-  const debouncedKeywords = useDebounce(keywords, 1500);
+  const debouncedKeywords = useDebounce(filters.keywords, 1500);
 
   const { data: dataNews, isLoading: isLoading } = useFetch(getNews, {
-    page_number: currentPage,
-    page_size: PAGE_SIZE,
-    category: selectedCategory === 'All' ? null : selectedCategory,
-    keywords: keywords,
+    ...filters,
+    keywords: debouncedKeywords,
   });
-  console.log(dataNews);
 
   const { data: dataCategories } = useFetch(getCategories);
 
   const handleNextPage = () => {
-    if (currentPage < TOTAL_PAGES) {
-      setCurrentPage((prevPage) => prevPage + 1);
+    if (filters.page_number < TOTAL_PAGES) {
+      changeFilters('page_number', (prevPage) => prevPage + 1);
     }
   };
 
   const handlePrevPage = () => {
-    if (currentPage > 1) {
-      setCurrentPage((prevPage) => prevPage - 1);
+    if (filters.page_number > 1) {
+      changeFilters('page_number', (prevPage) => prevPage - 1);
     }
   };
 
-  const handleClickPage = (pageNumber) => {
-    setCurrentPage(pageNumber);
+  const handlePageClick = (pageNumber) => {
+    changeFilters('page_number', pageNumber);
   };
 
   return (
@@ -48,15 +48,15 @@ const Main = () => {
       {dataCategories
         ? <Categories
           categories={dataCategories?.categories}
-          selectedCategory={selectedCategory}
-          setSelectedCategories={setSelectedCategories}
+          selectedCategory={filters.category}
+          setSelectedCategories={(category) => changeFilters('category', category)}
         />
         : null
       }
 
       <Search
-        keywords={keywords}
-        setKeywords={setKeywords}
+        keywords={filters.keywords}
+        setKeywords={(keywords) => changeFilters('keywords', keywords)}
       />
 
       <NewsBanner
@@ -66,9 +66,9 @@ const Main = () => {
 
       <Pagination
         totalPages={TOTAL_PAGES}
-        currentPage={currentPage}
+        currentPage={filters.page_number}
         handleNextPage={handleNextPage}
-        handleClickPage={handleClickPage}
+        handlePageClick={handlePageClick}
         handlePrevPage={handlePrevPage}
       />
 
