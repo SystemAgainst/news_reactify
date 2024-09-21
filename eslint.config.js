@@ -26,6 +26,7 @@ export default [
         clearTimeout: 'readonly',
         setInterval: 'readonly',
         clearInterval: 'readonly',
+        URLSearchParams: 'readonly',
         // Глобальные переменные Node.js
         module: 'readonly',
         require: 'readonly',
