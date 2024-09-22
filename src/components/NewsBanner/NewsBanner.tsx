@@ -1,7 +1,7 @@
 import styles from './styles.module.css';
-import Image from '../Image/Image.jsx';
-import { formatTimeAgo } from '../../helpers/formatTimeAgo.js';
-import withSkeleton from '../../helpers/hocs/withSkeleton.jsx';
+import Image from '../Image/Image.tsx';
+import { formatTimeAgo } from '../../helpers/formatTimeAgo.ts';
+import withSkeleton from '../../helpers/hocs/withSkeleton.tsx';
 
 const NewsBanner = ({ item }) => {
   return (

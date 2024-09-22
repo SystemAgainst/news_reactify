@@ -1,4 +1,4 @@
-import Pagination from '../Pagination/Pagination.jsx';
+import Pagination from '../Pagination/Pagination.tsx';
 
 const PaginationWrapper = ({ top, bottom, children, ...props }) => {
   return (

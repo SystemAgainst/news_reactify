@@ -1,9 +1,9 @@
 import styles from './styles.module.css';
-import Categories from '../Categories/Categories.jsx';
-import Search from '../Search/Search.jsx';
-import { getCategories } from '../../api/news.js';
-import { useFetch } from '../../helpers/hooks/useFetch.js';
-import Slider from '../Slider/Slider.jsx';
+import Categories from '../Categories/Categories.tsx';
+import Search from '../Search/Search.tsx';
+import { getCategories } from '../../api/news.ts';
+import { useFetch } from '../../helpers/hooks/useFetch.ts';
+import Slider from '../Slider/Slider.tsx';
 
 const NewsFilters = ({ filters, changeFilters }) => {
   const { data: dataCategories } = useFetch(getCategories);
