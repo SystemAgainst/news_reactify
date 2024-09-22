@@ -1,5 +1,4 @@
 import styles from './styles.module.css';
-import Pagination from '../Pagination/Pagination.jsx';
 import { PAGE_SIZE, TOTAL_PAGES } from '../../constants/constants.js';
 import NewsFilters from '../NewsFilters/NewsFilters.jsx';
 import NewsList from '../NewsList/NewsList.jsx';
@@ -7,6 +6,7 @@ import { useFilters } from '../../helpers/hooks/useFilters.js';
 import { useDebounce } from '../../helpers/hooks/useDebounce.js';
 import { useFetch } from '../../helpers/hooks/useFetch.js';
 import { getNews } from '../../api/news.js';
+import PaginationWrapper from '../PaginationWrapper/PaginationWrapper.jsx';
 
 const NewsByFilters = () => {
   const { filters, changeFilters } = useFilters({
@@ -46,26 +46,20 @@ const NewsByFilters = () => {
         changeFilters={changeFilters}
       />
 
-      <Pagination
+      <PaginationWrapper
+        top
+        bottom
         totalPages={TOTAL_PAGES}
         currentPage={filters.page_number}
         handleNextPage={handleNextPage}
         handlePageClick={handlePageClick}
         handlePrevPage={handlePrevPage}
-      />
-
-      <NewsList
-        isLoading={isLoading}
-        news={data?.news}
-      />
-
-      <Pagination
-        totalPages={TOTAL_PAGES}
-        currentPage={filters.page_number}
-        handleNextPage={handleNextPage}
-        handlePageClick={handlePageClick}
-        handlePrevPage={handlePrevPage}
-      />
+      >
+        <NewsList
+          isLoading={isLoading}
+          news={data?.news}
+        />
+      </PaginationWrapper>
     </section>
   );
 };
