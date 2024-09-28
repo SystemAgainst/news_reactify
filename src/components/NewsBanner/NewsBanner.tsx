@@ -21,6 +21,6 @@ const NewsBanner: FC<Props> = ({ item }) => {
   );
 };
 
-const NewsBannerWithSkeleton = withSkeleton(NewsBanner, 'banner', 1);
+const NewsBannerWithSkeleton = withSkeleton(NewsBanner, 'banner', 1, 'row');
 
 export default NewsBannerWithSkeleton;
