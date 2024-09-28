@@ -4,11 +4,11 @@ import NewsBanner from '../NewsBanner/NewsBanner.tsx';
 import { INews } from '../../interfaces/index.ts';
 import { FC } from 'react';
 
-interface BannersProps {
+interface Props {
   banners?: INews[]
 }
 
-const BannersList: FC<BannersProps> = ({ banners }) => {
+const BannersList: FC<Props> = ({ banners }) => {
   return (
     <ul className={styles.banners}>
       {
