@@ -7,6 +7,7 @@ import { useDebounce } from '../../helpers/hooks/useDebounce.ts';
 import { useFetch } from '../../helpers/hooks/useFetch.ts';
 import { getNews } from '../../api/news.ts';
 import PaginationWrapper from '../PaginationWrapper/PaginationWrapper.tsx';
+import { NewsApiResponse, ParamsType } from '../../interfaces';
 
 const NewsByFilters = () => {
   const { filters, changeFilters } = useFilters({
@@ -18,7 +19,7 @@ const NewsByFilters = () => {
 
   const debouncedKeywords = useDebounce(filters.keywords, 1500);
 
-  const { data, isLoading } = useFetch(getNews, {
+  const { data, isLoading } = useFetch<NewsApiResponse, ParamsType>(getNews, {
     ...filters,
     keywords: debouncedKeywords,
   });
@@ -35,7 +36,7 @@ const NewsByFilters = () => {
     }
   };
 
-  const handlePageClick = (pageNumber) => {
+  const handlePageClick = (pageNumber: number) => {
     changeFilters("page_number", pageNumber);
   };
 
