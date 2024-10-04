@@ -5,13 +5,13 @@ import { FC } from 'react';
 import { INews } from '../../interfaces';
 
 interface Props {
-  news: INews[];
+  news?: INews[];
 }
 
 const NewsList: FC<Props> = ({ news }) => {
   return (
     <ul className={styles.list}>
-      {news.map((item) => {
+      {news?.map((item) => {
         return <NewsItem key={item.id} item={item} />;
       })}
     </ul>

@@ -54,7 +54,7 @@ const NewsByFilters = () => {
         currentPage={filters.page_number}
         handleNextPage={handleNextPage}
         handlePageClick={handlePageClick}
-        handlePrevPage={handlePrevPage}
+        handlePreviousPage={handlePrevPage}
       >
         <NewsList
           isLoading={isLoading}
