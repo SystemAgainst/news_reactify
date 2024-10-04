@@ -1,8 +1,14 @@
 import withSkeleton from "../../helpers/hocs/withSkeleton";
 import NewsItem from "../NewsItem/NewsItem.js";
 import styles from "./styles.module.css";
+import { FC } from 'react';
+import { INews } from '../../interfaces';
 
-const NewsList = ({ news }) => {
+interface Props {
+  news: INews[];
+}
+
+const NewsList: FC<Props> = ({ news }) => {
   return (
     <ul className={styles.list}>
       {news.map((item) => {
