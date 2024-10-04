@@ -44,7 +44,7 @@ const NewsByFilters = () => {
     <section className={styles.section}>
       <NewsFilters
         filters={filters}
-        changeFilters={changeFilters}
+        changeFilter={changeFilters}
       />
 
       <PaginationWrapper

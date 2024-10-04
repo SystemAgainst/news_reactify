@@ -4,9 +4,16 @@ import Search from '../Search/Search.tsx';
 import { getCategories } from '../../api/news.ts';
 import { useFetch } from '../../helpers/hooks/useFetch.ts';
 import Slider from '../Slider/Slider.tsx';
+import { CategoriesApiResponse, IFilters } from '../../interfaces';
+import { FC } from 'react';
 
-const NewsFilters = ({ filters, changeFilters }) => {
-  const { data: dataCategories } = useFetch(getCategories);
+interface Props {
+  filters: IFilters;
+  changeFilter: (key: string, value: string | null | number) => void;
+}
+
+const NewsFilters: FC<Props> = ({ filters, changeFilter }) => {
+  const { data: dataCategories } = useFetch<CategoriesApiResponse, null>(getCategories);
 
   return (
     <div className={styles.filters}>
@@ -16,14 +23,14 @@ const NewsFilters = ({ filters, changeFilters }) => {
           <Categories
             categories={dataCategories?.categories}
             selectedCategory={filters.category}
-            setSelectedCategories={(category) => changeFilters('category', category)}
+            setSelectedCategories={(category) => changeFilter('category', category)}
           />
         </Slider>
       ) : null}
 
       <Search
         keywords={filters.keywords}
-        setKeywords={(keywords) => changeFilters('keywords', keywords)}
+        setKeywords={(keywords) => changeFilter('keywords', keywords)}
       />
     </div>
   );
