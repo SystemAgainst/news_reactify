@@ -1,6 +1,8 @@
 import styles from './styles.module.css';
+import { FC } from 'react';
+import { IPaginationProps } from '../../interfaces';
 
-const Pagination = ({
+const Pagination: FC<IPaginationProps> = ({
   totalPages,
   handlePreviousPage,
   handleNextPage,
