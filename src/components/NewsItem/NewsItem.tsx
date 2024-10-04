@@ -1,6 +1,6 @@
-import { FC } from "react";
-import { formatTimeAgo } from "../../helpers/formatTimeAgo";
-import styles from "./styles.module.css";
+import { FC } from 'react';
+import { formatTimeAgo } from '../../helpers/formatTimeAgo';
+import styles from './styles.module.css';
 import { INews } from '../../interfaces';
 
 interface Props {

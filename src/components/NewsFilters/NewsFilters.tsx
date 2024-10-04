@@ -13,17 +13,20 @@ interface Props {
 }
 
 const NewsFilters: FC<Props> = ({ filters, changeFilter }) => {
-  const { data: dataCategories } = useFetch<CategoriesApiResponse, null>(getCategories);
+  const { data: dataCategories } = useFetch<CategoriesApiResponse, null>(
+    getCategories,
+  );
 
   return (
     <div className={styles.filters}>
-      {dataCategories
-        ? (
+      {dataCategories ? (
         <Slider>
           <Categories
             categories={dataCategories?.categories}
             selectedCategory={filters.category}
-            setSelectedCategories={(category) => changeFilter('category', category)}
+            setSelectedCategories={(category) =>
+              changeFilter('category', category)
+            }
           />
         </Slider>
       ) : null}

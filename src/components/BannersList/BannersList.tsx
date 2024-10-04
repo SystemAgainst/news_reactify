@@ -5,17 +5,15 @@ import { INews } from '../../interfaces/index.ts';
 import { FC } from 'react';
 
 interface Props {
-  banners?: INews[]
+  banners?: INews[];
 }
 
 const BannersList: FC<Props> = ({ banners }) => {
   return (
     <ul className={styles.banners}>
-      {
-        banners?.map((banner) => {
-          return <NewsBanner key={banner.id} item={banner} />;
-        })
-      }
+      {banners?.map((banner) => {
+        return <NewsBanner key={banner.id} item={banner} />;
+      })}
     </ul>
   );
 };

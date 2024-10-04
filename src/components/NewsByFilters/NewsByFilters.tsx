@@ -26,26 +26,23 @@ const NewsByFilters = () => {
 
   const handleNextPage = () => {
     if (filters.page_number < TOTAL_PAGES) {
-      changeFilters("page_number", filters.page_number + 1);
+      changeFilters('page_number', filters.page_number + 1);
     }
   };
 
   const handlePrevPage = () => {
     if (filters.page_number > 1) {
-      changeFilters("page_number", filters.page_number - 1);
+      changeFilters('page_number', filters.page_number - 1);
     }
   };
 
   const handlePageClick = (pageNumber: number) => {
-    changeFilters("page_number", pageNumber);
+    changeFilters('page_number', pageNumber);
   };
 
   return (
     <section className={styles.section}>
-      <NewsFilters
-        filters={filters}
-        changeFilter={changeFilters}
-      />
+      <NewsFilters filters={filters} changeFilter={changeFilters} />
 
       <PaginationWrapper
         top
@@ -56,10 +53,7 @@ const NewsByFilters = () => {
         handlePageClick={handlePageClick}
         handlePreviousPage={handlePrevPage}
       >
-        <NewsList
-          isLoading={isLoading}
-          news={data?.news}
-        />
+        <NewsList isLoading={isLoading} news={data?.news} />
       </PaginationWrapper>
     </section>
   );

@@ -8,29 +8,34 @@ interface Props {
   setSelectedCategories: (category: CategoriesType | null) => void;
 }
 
-const Categories: FC<Props> = forwardRef(({ categories, selectedCategory, setSelectedCategories }: Props, ref: ForwardedRef<HTMLDivElement>) => {
-  return (
-    <div ref={ref} className={styles.categories}>
-      <button
-        className={!selectedCategory ? styles.active : styles.item}
-        onClick={() => setSelectedCategories(null)}
-      >
-        All
-      </button>
-      {
-        categories.map(category => (
+const Categories: FC<Props> = forwardRef(
+  (
+    { categories, selectedCategory, setSelectedCategories }: Props,
+    ref: ForwardedRef<HTMLDivElement>,
+  ) => {
+    return (
+      <div ref={ref} className={styles.categories}>
+        <button
+          className={!selectedCategory ? styles.active : styles.item}
+          onClick={() => setSelectedCategories(null)}
+        >
+          All
+        </button>
+        {categories.map((category) => (
           <button
             key={category}
-            className={selectedCategory === category ? styles.active : styles.item}
+            className={
+              selectedCategory === category ? styles.active : styles.item
+            }
             onClick={() => setSelectedCategories(category)}
           >
             {category}
           </button>
-        ))
-      }
-    </div>
-  );
-});
+        ))}
+      </div>
+    );
+  },
+);
 
 Categories.displayName = 'Categories';
 

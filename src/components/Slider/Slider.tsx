@@ -1,5 +1,5 @@
-import { useRef, cloneElement } from "react";
-import styles from "./styles.module.css";
+import { useRef, cloneElement } from 'react';
+import styles from './styles.module.css';
 
 const Slider = ({ children, step = 150 }) => {
   const sliderRef = useRef(null);

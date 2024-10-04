@@ -6,7 +6,12 @@ interface Props {
   isLoading: boolean;
 }
 
-function withSkeleton<P extends object>(Component: ComponentType<P>, type?: SkeletonType, count?: number, direction?: DirectionType) {
+function withSkeleton<P extends object>(
+  Component: ComponentType<P>,
+  type?: SkeletonType,
+  count?: number,
+  direction?: DirectionType,
+) {
   return function withSkeleton(props: Props & P) {
     const { isLoading, ...rest } = props;
 
@@ -14,7 +19,7 @@ function withSkeleton<P extends object>(Component: ComponentType<P>, type?: Skel
       return <Skeleton type={type} count={count} direction={direction} />;
     }
 
-    return <Component {...rest as P} type={type} count={count} />;
+    return <Component {...(rest as P)} type={type} count={count} />;
   };
 }
 

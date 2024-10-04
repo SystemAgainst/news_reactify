@@ -1,6 +1,6 @@
-import withSkeleton from "../../helpers/hocs/withSkeleton";
-import NewsItem from "../NewsItem/NewsItem.js";
-import styles from "./styles.module.css";
+import withSkeleton from '../../helpers/hocs/withSkeleton';
+import NewsItem from '../NewsItem/NewsItem.js';
+import styles from './styles.module.css';
 import { FC } from 'react';
 import { INews } from '../../interfaces';
 
@@ -18,6 +18,6 @@ const NewsList: FC<Props> = ({ news }) => {
   );
 };
 
-const NewsListWithSkeleton = withSkeleton(NewsList, "item", 10);
+const NewsListWithSkeleton = withSkeleton(NewsList, 'item', 10);
 
 export default NewsListWithSkeleton;
