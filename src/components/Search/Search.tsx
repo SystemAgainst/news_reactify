@@ -1,7 +1,13 @@
 import styles from './styles.module.css';
+import { ChangeEvent, FC } from 'react';
 
-const Search = ({ keywords, setKeywords }) => {
-  const onChange = (e) => {
+interface Props {
+  keywords: string;
+  setKeywords: (keywords: string) => void;
+}
+
+const Search: FC<Props> = ({ keywords, setKeywords }) => {
+  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setKeywords(e.target.value);
   };
 

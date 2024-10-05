@@ -1,6 +1,11 @@
 import styles from './styles.module.css';
+import { FC } from 'react';
 
-const Image = ({ image }) => {
+interface Props {
+  image: string;
+}
+
+const Image: FC<Props> = ({ image }) => {
   return (
     <div className={styles.wrapper}>
       {image ? <img src={image} alt="news" className={styles.image} /> : null}

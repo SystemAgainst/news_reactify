@@ -1,9 +1,14 @@
 import styles from './styles.module.css';
-import Image from '../Image/Image.jsx';
-import { formatTimeAgo } from '../../helpers/formatTimeAgo.js';
-import withSkeleton from '../../helpers/hocs/withSkeleton.jsx';
+import Image from '../Image/Image.tsx';
+import { formatTimeAgo } from '../../helpers/formatTimeAgo.ts';
+import { INews } from '../../interfaces';
+import { FC } from 'react';
 
-const NewsBanner = ({ item }) => {
+interface Props {
+  item: INews;
+}
+
+const NewsBanner: FC<Props> = ({ item }) => {
   return (
     <div className={styles.banner}>
       <Image image={item?.image} />
@@ -15,6 +20,4 @@ const NewsBanner = ({ item }) => {
   );
 };
 
-const NewsBannerWithSkeleton = withSkeleton(NewsBanner, 'banner', 1);
-
-export default NewsBannerWithSkeleton;
+export default NewsBanner;

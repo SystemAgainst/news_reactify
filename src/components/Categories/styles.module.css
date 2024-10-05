@@ -9,7 +9,8 @@
   width: 100%;
 }
 
-.item, .active {
+.item,
+.active {
   display: flex;
   align-items: center;
   padding: 8px 16px;
@@ -17,9 +18,10 @@
   border-radius: 32px;
   background-color: #f2f4f5;
   cursor: pointer;
-  transition: background-color .5s ease-in-out;
+  transition: background-color 0.5s ease-in-out;
 }
-.item:hover, .active:hover {
+.item:hover,
+.active:hover {
   background-color: #ececfd;
 }
 
