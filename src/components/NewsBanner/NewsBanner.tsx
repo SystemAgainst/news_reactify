@@ -1,7 +1,6 @@
 import styles from './styles.module.css';
 import Image from '../Image/Image.tsx';
 import { formatTimeAgo } from '../../helpers/formatTimeAgo.ts';
-import withSkeleton from '../../helpers/hocs/withSkeleton.tsx';
 import { INews } from '../../interfaces';
 import { FC } from 'react';
 
@@ -21,6 +20,4 @@ const NewsBanner: FC<Props> = ({ item }) => {
   );
 };
 
-const NewsBannerWithSkeleton = withSkeleton(NewsBanner, 'banner', 1, 'row');
-
-export default NewsBannerWithSkeleton;
+export default NewsBanner;

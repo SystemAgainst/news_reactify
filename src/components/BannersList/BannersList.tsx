@@ -1,11 +1,11 @@
 import styles from './styles.module.css';
 import withSkeleton from '../../helpers/hocs/withSkeleton.tsx';
 import NewsBanner from '../NewsBanner/NewsBanner.tsx';
-import { INews } from '../../interfaces/index.ts';
+import { INews } from '../../interfaces';
 import { FC } from 'react';
 
 interface Props {
-  banners?: INews[];
+  banners?: INews[] | null;
 }
 
 const BannersList: FC<Props> = ({ banners }) => {
@@ -18,6 +18,11 @@ const BannersList: FC<Props> = ({ banners }) => {
   );
 };
 
-const NewsBannerWithSkeleton = withSkeleton(BannersList, 'banner', 10, 'row');
+const NewsBannerWithSkeleton = withSkeleton<Props>(
+  BannersList,
+  'banner',
+  10,
+  'row',
+);
 
 export default NewsBannerWithSkeleton;
