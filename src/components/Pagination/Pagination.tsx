@@ -1,6 +1,7 @@
 import styles from './styles.module.css';
 import { FC } from 'react';
 import { IPaginationProps } from '../../interfaces';
+import { useTheme } from '../../context/ThemeContext.tsx';
 
 const Pagination: FC<IPaginationProps> = ({
   totalPages,
@@ -9,8 +10,10 @@ const Pagination: FC<IPaginationProps> = ({
   handlePageClick,
   currentPage,
 }) => {
+  const { isDark } = useTheme();
+
   return (
-    <div className={styles.pagination}>
+    <div className={`${styles.pagination} ${isDark ? styles.dark : styles.light}`}>
       <button
         disabled={currentPage <= 1}
         onClick={handlePreviousPage}

@@ -1,5 +1,6 @@
 import styles from './styles.module.css';
 import { ChangeEvent, FC } from 'react';
+import { useTheme } from '../../context/ThemeContext.tsx';
 
 interface Props {
   keywords: string;
@@ -7,12 +8,15 @@ interface Props {
 }
 
 const Search: FC<Props> = ({ keywords, setKeywords }) => {
+  const { isDark } = useTheme();
+
+
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
     setKeywords(e.target.value);
   };
 
   return (
-    <div className={styles.search}>
+    <div className={`${styles.search} ${isDark ? styles.dark : styles.light}`}>
       <input
         type="text"
         value={keywords}

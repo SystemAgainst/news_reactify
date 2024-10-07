@@ -1,11 +1,19 @@
-import { formatDate } from '../../helpers/formatDate.ts';
+import { formatDate } from '../../helpers/formatDate';
 import styles from './styles.module.css';
+import { useTheme } from '../../context/ThemeContext';
 
 const Header = () => {
+  const { isDark, toggleTheme } = useTheme();
   return (
-    <header className={styles.header}>
-      <h1 className={styles.header__title}>NEWS REACTIFY</h1>
-      <p className={styles.header__date}>{formatDate(new Date())}</p>
+    <header
+      className={`${styles.header} ${isDark ? styles.dark : styles.light}`}
+    >
+      <div className={styles.info}>
+        <h1 className={styles.title}>NEWS REACTIFY</h1>
+        <p className={styles.date}>{formatDate(new Date())}</p>
+      </div>
+
+      <span onClick={toggleTheme}>{isDark ? 'Light' : 'Dark'}</span>
     </header>
   );
 };
