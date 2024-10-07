@@ -6,6 +6,7 @@ import { useFetch } from '../../helpers/hooks/useFetch.ts';
 import Slider from '../Slider/Slider.tsx';
 import { CategoriesApiResponse, IFilters } from '../../interfaces';
 import { FC } from 'react';
+import { useTheme } from '../../context/ThemeContext.tsx';
 
 interface Props {
   filters: IFilters;
@@ -13,6 +14,8 @@ interface Props {
 }
 
 const NewsFilters: FC<Props> = ({ filters, changeFilter }) => {
+  const { isDark } = useTheme();
+
   const { data: dataCategories } = useFetch<CategoriesApiResponse, null>(
     getCategories,
   );
@@ -20,7 +23,7 @@ const NewsFilters: FC<Props> = ({ filters, changeFilter }) => {
   return (
     <div className={styles.filters}>
       {dataCategories ? (
-        <Slider>
+        <Slider isDark={isDark}>
           <Categories
             categories={dataCategories?.categories}
             selectedCategory={filters.category}

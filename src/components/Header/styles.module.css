@@ -1,17 +1,32 @@
 .header {
   display: flex;
-  flex-direction: column;
-  gap: 12px;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   padding: 12px 24px;
-  background-color: #fff;
+  background-color: white;
   border-bottom: 1px solid #f2f4f5;
 }
 
-.header__title {
-  font-size: 20px;
+.info {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.header__date {
-  font-size: 1rem;
+.dark {
+  background-color: #23272f;
+  border-bottom: 1px solid rgb(60, 60, 60);
+}
+
+.light {
+  background-color: white;
+}
+
+.title {
+  font-size: 28px;
+}
+
+.date {
+  font-size: 16px;
 }
