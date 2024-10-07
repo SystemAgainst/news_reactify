@@ -1,20 +1,19 @@
-import styles from './styles.module.css';
-import Image from '../Image/Image.tsx';
-import { formatTimeAgo } from '../../helpers/formatTimeAgo.ts';
-import { INews } from '../../interfaces';
-import { FC } from 'react';
+import { formatTimeAgo } from "../../helpers/formatTimeAgo";
+import { INews } from "../../interfaces";
+import Image from "../Image/Image";
+import styles from "./styles.module.css";
 
 interface Props {
   item: INews;
 }
 
-const NewsBanner: FC<Props> = ({ item }) => {
+const NewsBanner = ({ item }: Props) => {
   return (
     <div className={styles.banner}>
       <Image image={item?.image} />
-      <h3 className={styles.banner__title}>{item?.title}</h3>
-      <p className={styles.banner__extra}>
-        {formatTimeAgo(item?.published)} by {item?.author}
+      <h3 className={styles.title}>{item.title}</h3>
+      <p className={styles.extra}>
+        {formatTimeAgo(item.published)} by {item.author}
       </p>
     </div>
   );
