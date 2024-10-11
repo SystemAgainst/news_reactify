@@ -13,6 +13,7 @@ export const newsApi = createApi({
   baseQuery: fetchBaseQuery({ baseUrl: BASE_URL }),
   endpoints: (builder) => ({
     getNews: builder.query<NewsApiResponse, ParamsType>({
+      keepUnusedDataFor: 0, // чтобы избежать кэширования и получать данные из одинаковых эндпоинтов в params
       query: (params) => {
         const {
           page_number = 1,
