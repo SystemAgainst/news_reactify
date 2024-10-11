@@ -6,16 +6,19 @@ import { IFilters } from '../../interfaces';
 import { FC } from 'react';
 import { useTheme } from '../../context/ThemeContext.tsx';
 import { useGetCategoriesQuery } from '../../store/services/newsApi.ts';
+import { getFilters } from '../../store/slices/newsSlice.ts';
+import { useAppDispatch } from '../../store';
 
 interface Props {
   filters: IFilters;
-  changeFilter: (key: string, value: string | null | number) => void;
 }
 
-const NewsFilters: FC<Props> = ({ filters, changeFilter }) => {
+const NewsFilters: FC<Props> = ({ filters }) => {
   const { isDark } = useTheme();
 
   const { data } = useGetCategoriesQuery(null);
+
+  const dispatch = useAppDispatch();
 
   return (
     <div className={styles.filters}>
@@ -25,7 +28,7 @@ const NewsFilters: FC<Props> = ({ filters, changeFilter }) => {
             categories={data?.categories}
             selectedCategory={filters.category}
             setSelectedCategories={(category) =>
-              changeFilter('category', category)
+              dispatch(getFilters({ key: 'page_number', value: category }))
             }
           />
         </Slider>
@@ -33,7 +36,9 @@ const NewsFilters: FC<Props> = ({ filters, changeFilter }) => {
 
       <Search
         keywords={filters.keywords}
-        setKeywords={(keywords) => changeFilter('keywords', keywords)}
+        setKeywords={(keywords) =>
+          dispatch(getFilters({ key: 'keywords', value: keywords }))
+        }
       />
     </div>
   );

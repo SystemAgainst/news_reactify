@@ -1,19 +1,17 @@
 import styles from './styles.module.css';
-import { PAGE_SIZE, TOTAL_PAGES } from '../../constants/constants.ts';
+import { TOTAL_PAGES } from '../../constants/constants.ts';
 import NewsFilters from '../NewsFilters/NewsFilters.tsx';
 import NewsList from '../NewsList/NewsList.tsx';
-import { useFilters } from '../../helpers/hooks/useFilters.ts';
 import { useDebounce } from '../../helpers/hooks/useDebounce.ts';
 import PaginationWrapper from '../PaginationWrapper/PaginationWrapper.tsx';
 import { useGetNewsQuery } from '../../store/services/newsApi.ts';
+import { useAppDispatch, useAppSelector } from '../../store';
+import { getFilters } from '../../store/slices/newsSlice.ts';
 
 const NewsByFilters = () => {
-  const { filters, changeFilters } = useFilters({
-    page_number: 1,
-    page_size: PAGE_SIZE,
-    category: null,
-    keywords: '',
-  });
+  const filters = useAppSelector((state) => state.news.filters);
+
+  const dispatch = useAppDispatch();
 
   const debouncedKeywords = useDebounce(filters.keywords, 1500);
 
@@ -24,23 +22,27 @@ const NewsByFilters = () => {
 
   const handleNextPage = () => {
     if (filters.page_number < TOTAL_PAGES) {
-      changeFilters('page_number', filters.page_number + 1);
+      dispatch(
+        getFilters({ key: 'page_number', value: filters.page_number + 1 }),
+      );
     }
   };
 
   const handlePrevPage = () => {
     if (filters.page_number > 1) {
-      changeFilters('page_number', filters.page_number - 1);
+      dispatch(
+        getFilters({ key: 'page_number', value: filters.page_number - 1 }),
+      );
     }
   };
 
   const handlePageClick = (pageNumber: number) => {
-    changeFilters('page_number', pageNumber);
+    dispatch(getFilters({ key: 'page_number', value: pageNumber }));
   };
 
   return (
     <section className={styles.section}>
-      <NewsFilters filters={filters} changeFilter={changeFilters} />
+      <NewsFilters filters={filters} />
 
       <PaginationWrapper
         top
