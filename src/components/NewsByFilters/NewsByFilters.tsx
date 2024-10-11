@@ -4,10 +4,8 @@ import NewsFilters from '../NewsFilters/NewsFilters.tsx';
 import NewsList from '../NewsList/NewsList.tsx';
 import { useFilters } from '../../helpers/hooks/useFilters.ts';
 import { useDebounce } from '../../helpers/hooks/useDebounce.ts';
-import { useFetch } from '../../helpers/hooks/useFetch.ts';
-import { getNews } from '../../api/news.ts';
 import PaginationWrapper from '../PaginationWrapper/PaginationWrapper.tsx';
-import { NewsApiResponse, ParamsType } from '../../interfaces';
+import { useGetNewsQuery } from '../../store/services/newsApi.ts';
 
 const NewsByFilters = () => {
   const { filters, changeFilters } = useFilters({
@@ -19,7 +17,7 @@ const NewsByFilters = () => {
 
   const debouncedKeywords = useDebounce(filters.keywords, 1500);
 
-  const { data, isLoading } = useFetch<NewsApiResponse, ParamsType>(getNews, {
+  const { data, isLoading } = useGetNewsQuery({
     ...filters,
     keywords: debouncedKeywords,
   });
